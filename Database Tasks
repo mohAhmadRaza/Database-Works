@@ -1,0 +1,60 @@
+create database Ahmad;
+
+create table Salesman
+(
+salesman_Id int primary key,Name varchar(100), city varchar(100), commission float
+);
+
+create table customer
+(
+customer_Id int primary key, cust_name varchar(50), city varchar(50), grade int,
+salesman_Id int foreign key REFERENCES Salesman(salesman_Id)
+);
+
+create table Orders
+(
+ord_no int primary key, purch_amount float, ord_date date, customer_id int foreign key REFERENCES customer (customer_Id),
+salesman_id int foreign key REFERENCES Salesman(salesman_Id)
+);
+
+
+
+INSERT INTO Salesman
+values(5001,'James Hong','new York',0.15),(5002,'Nail Knite','Paris',0.13),(5005,'Pit Alex','london',0.11),(5006,'Mc lyon','Paris',0.14),
+(5007,'Paul Adam','Rome',0.13),(5003,'Lauson Hen','San Jose',0.12);
+
+INSERT INTO customer
+values(3002,'Nick Rimando','New York',100,5001),(3007,'Brad Davis','New York',200,5001),(3005,'Graham Zusi','California',200,5002),
+(3008,'Julien Green','London',300,5002),(3004,'Fabion Johson','Paris',300,5006),(3003,'Jozy Altidor','Moscow',200,5007);
+
+INSERT INTO Orders
+values(70001 , 150.5, '2012-10-05',3005,5002),(70009 , 270.5, '2012-09-05',3002,5005),(70002,65.26,'2012-10-05',3002,5001),
+(70004,110.5,'2012-08-17',3004,5003),(70007 , 948.5,'2012-09-10',3005,5002),(70005,2400.6,'2012-07-27',3008,5001),(70008,5760,'2012-09-10',3002,5001);
+
+select Salesman.Name AS Salesman_Name, customer.cust_name AS Customer_Name,Salesman.city from customer inner join salesman
+ON Salesman.city = customer.city;
+
+SELECT ord_no,purch_amount,cust_name,city from Orders join customer ON customer.customer_Id = Orders.customer_id
+where purch_amount between 200 AND 500;
+
+SELECT customer.cust_name,customer.city,Salesman.Name,commission FROM customer inner join Salesman
+ON customer.salesman_Id = Salesman.salesman_Id;
+
+SELECT customer.cust_name AS Customer_Name,customer.city,Salesman.Name AS Salesman_Name,commission FROM Salesman inner join customer 
+ON Salesman.salesman_Id = customer.salesman_Id AND commission>0.12;
+
+SELECT  cust_name AS Customer_Name, customer.city, grade, Salesman.Name AS Salesman_Names, salesman.city from customer inner join Salesman
+ON Salesman.salesman_Id = customer.salesman_Id;
+
+select Salesman.Name AS Salesman_Name, customer.city,customer.cust_name AS Customer_Name,Salesman.city from customer inner join salesman
+ON Salesman.salesman_Id = customer.salesman_Id 
+WHERE grade<300;
+
+SELECT Salesman.salesman_Id,Salesman.Name FROM Salesman 
+Right JOIN customer
+ON customer.salesman_Id = customer.salesman_Id
+ORDER BY Salesman.Name ASC 
+
+SELECT cust_name, customer.city, ord_no, ord_date, purch_amount from customer 
+INNER JOIN Orders 
+ON Orders.customer_Id = customer.customer_Id
