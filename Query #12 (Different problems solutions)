@@ -1,0 +1,26 @@
+SELECT first_name,last_name,allergies
+FROM patients
+WHERE allergies IS NOT NULL AND city = 'Hamilton';
+ 
+SELECT first_name,last_name,gender
+FROM patients
+WHERE gender = 'M';
+
+SELECT first_name,last_name
+FROM patients
+WHERE allergies IS NULL;
+
+SELECT first_name
+FROM patients
+WHERE first_name LIKE 'C%';
+
+SELECT first_name,last_name
+FROM patients
+WHERE weight BETWEEN 100 AND 120;
+
+UPDATE patients
+SET allergies= 'NKA'
+WHERE allergies IS NULL;
+
+SELECT CONCAT(first_name,'',last_name) AS Fullname
+FROM patients;
