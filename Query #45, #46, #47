@@ -1,0 +1,11 @@
+SELECT count(order_id) from orders
+where date is '2012-09-2';
+
+SELECT ord_date, salesperson_id,count(salesman_id) from orders
+group by ord_date, salesperson_id;
+
+SELECT COUNT(*) 
+where pro_price>=350;
+
+SELECT pro_com,AVG(pro_prive) from item_mast
+group by pro_com;
