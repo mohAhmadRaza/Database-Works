@@ -1,0 +1,6 @@
+SELECT top 1 department.name 
+from department
+JOIN employee
+ON employee.dept_id = department.dept_id
+GROUP BY dept_id,department.name
+ORDER by AVG(Salary) Desc;
