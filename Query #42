@@ -1,0 +1,7 @@
+SELECT ord_no, cust_name,customer_id, salesman_id 
+from salesman 
+INNER JOIN CUSTOMER
+ON customer.salesman_id=salesman.salesmn_id
+INNER JOIN Orders
+ON order.salesman_id = customer.salesman_id
+WHERE customer.city <> salesman.city;
