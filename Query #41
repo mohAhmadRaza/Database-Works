@@ -1,0 +1,5 @@
+SELECT cust_name AS customer city AS City
+from customer
+INNER JOIN salesperson
+on customer.salesman_id = salesman.salesman_id
+where salesamn.commision between 0.12 AND .14;
