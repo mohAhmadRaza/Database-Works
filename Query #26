@@ -1,0 +1,4 @@
+SELECT production_year, count(title),
+AVG(production_cost), AVG(revenue)
+from company
+group by production_year;
