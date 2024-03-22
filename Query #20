@@ -1,0 +1,4 @@
+SELECT COUNT(*) 
+FROM employee,Department
+WHERE employee.dept_id = Department.dept_id
+GROUP BY dept_id;
