@@ -1,0 +1,4 @@
+SELECT salesman.name 
+from salesman
+left join customer
+On customer.salesman_id = salesman.salesman_id
