@@ -1,0 +1,5 @@
+
+SELECT customer id,order date, Max(purchase_amt) 
+from orders
+Group by customer_id, ord_date
+Having Max(purchase_amt) IN(2000,3000,4000,5000);
