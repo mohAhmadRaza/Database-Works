@@ -1,0 +1,4 @@
+SELECT salesperson_id, max(purch_amt) 
+from orders
+group by salespaerson_id
+where ord_date = 2012-10-05;
