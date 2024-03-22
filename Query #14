@@ -1,0 +1,3 @@
+SELECT SUM(salary) AS TotalSalary from employee,job
+where job.job_id =employee.job_id
+GROUP BY job_title,job_id;
