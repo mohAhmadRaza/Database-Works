@@ -1,0 +1,4 @@
+SELECT customer id,order date, Max(purchase_amt) 
+from orders
+Group by customer_id
+Having (Max(purchase_amt)) > 2000.00;
