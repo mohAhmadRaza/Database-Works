@@ -1,0 +1,7 @@
+CREAT ASSERTION NO
+CHECK NOT EXISTS (SELECT classes.class 
+FROM Ships,Clasess
+WHERE classes.class= ships.class
+GROUP BY classes.class
+Having COUNT(*)>2;
+)
