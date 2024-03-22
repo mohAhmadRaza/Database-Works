@@ -1,0 +1,8 @@
+SELECT A.names AS Agencies_Names, count(R.rental_id) Rentals_Made 
+from agencies AS A
+LEFT join CARS C
+on A.agency_id = C.agency_id
+left join rentals as R
+on R.car_id = C.car_id
+group by A.name
+having count(R.rental_id) > 1;
