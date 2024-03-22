@@ -1,0 +1,7 @@
+SELECT COUNT(customer_id) from orders
+where Not grade is null;
+
+SELECT MAX(purchase_amt) from orders
+
+SELECT Max(grade) form orders
+group by city;
