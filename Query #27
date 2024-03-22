@@ -1,0 +1,3 @@
+Select name, SUM(revenue) 
+from games
+group by name;
