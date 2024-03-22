@@ -1,0 +1,6 @@
+SELECT addresses,count(car_id)from agencies 
+Left join cars
+ON cars.agency_id = gencies.aency_id
+Where availaibility = 1
+GROUP BY addresses
+HAVING (COUNT(car_id) > 0);
