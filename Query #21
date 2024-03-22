@@ -1,0 +1,5 @@
+SELECT AVG(Salary) AS averageSalary 
+FROM employee;
+
+SELECT MAX(salary) AS HighestSalary 
+FROM employee;
