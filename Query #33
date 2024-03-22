@@ -1,0 +1,5 @@
+SELECT name from customer 
+INNER JOIN rentals
+on customer.customer_id = rental.customer_id
+where rental_start_date > '2024-03-03';
+select count(rental_id) from renatls;
