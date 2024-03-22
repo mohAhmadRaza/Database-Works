@@ -1,0 +1,5 @@
+SELECT uid 
+from Users 
+JOIN Friends
+ON Friends.uid = Users.uid
+where Freinds.uid2 IS NULL;
