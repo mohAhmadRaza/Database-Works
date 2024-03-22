@@ -1,0 +1,5 @@
+SELECT SUM(employee.salary) AS TotalSalary 
+FROM department
+JOIN employee
+ON department.dept_id = employee.dept_id
+GROUP BY dept_id;
