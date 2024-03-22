@@ -1,0 +1,4 @@
+SELECT uid 
+from Users
+left join Friends
+ON users.user_id <> Freinds.uid;
