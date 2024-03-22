@@ -1,0 +1,2 @@
+SELECT names from customer,rentals
+where rental.customer_id = null;
