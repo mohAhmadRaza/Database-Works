@@ -1,0 +1,7 @@
+Select customer name, city, order number, order_date, order_amount 
+from customer
+left INNER JOIN salesman
+on customer.salesman_id = salesman.salesman_id
+left JOIN orders
+ON order.salesman_id = customer.salesman_id
+order by ord_date;
