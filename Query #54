@@ -1,0 +1,5 @@
+select  sum(purch_amt) from orders;
+
+SELECT AVG(purch_amt)FROM orders;
+
+SELECT COUNT(customer_id) from orders
