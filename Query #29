@@ -1,0 +1,6 @@
+SELECT A.name, AVG(rental_price_per_day) AS  rental_price_per_day 
+from agencies AS A
+INNER JOIN cars AS C
+ON C.agencie_id = A.agencie_id
+GROUP BY A.name
+ORDER BY rental_price_per_day ASC;
