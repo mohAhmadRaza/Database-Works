@@ -1,0 +1,6 @@
+SELECT salesman.name 
+from customer
+RIGHTjoin salesmn
+On customer.salesman_id = salesman.salesman_id
+LEFT JOIN orders
+ON customer.salesman_id = salesman.salesman_id OR order_amount > 2000;
