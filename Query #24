@@ -1,0 +1,5 @@
+SELECT types, SUM(revenue) 
+from company
+where production_year>2010
+GROUP BY type
+order by SUM(revenue) DECS;
