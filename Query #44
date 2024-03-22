@@ -1,0 +1,3 @@
+SELECT EMP_DEP,COUNT(EMp_INDO) 
+FROM emp_department
+GROUP BY EMP_DEP;
