@@ -1,0 +1,4 @@
+SELECT count(*),type 
+from company
+where revenue>production_cost
+GROUP BY type;
