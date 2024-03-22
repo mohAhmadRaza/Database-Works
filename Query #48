@@ -1,0 +1,4 @@
+SELECT customer id, Max(purchase_amt) 
+from orders
+where customer_id IS between 3002 NAD 3007
+Group by customer_id
