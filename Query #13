@@ -1,0 +1,4 @@
+
+
+SELECT COUNT(*) AS TotalDependents FORM dependent
+GROUP BY dependent.employee_id;
