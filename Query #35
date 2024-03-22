@@ -1,0 +1,8 @@
+SELECT pid FROM Posts
+Inner join Users U1
+On posts.uid = Users.uid
+Inner join Likes
+on posts.pid = likes.pid
+INNER JOIN Users U2
+On likes.
+where User.university = 'UET';
