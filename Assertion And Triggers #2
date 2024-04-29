@@ -1,0 +1,99 @@
+
+CREATE TABLE Cust
+(Customer_Number int primary key, Customer_Name varchar(30), City varchar(30), Country varchar(30));
+
+CREATE TABLE EMPLOYEES
+(employeeID int primary key, FirstName varchar(30), LastName varchar(30), Email varchar(30), OfficeCode int , JobCode varchar(30));
+
+INSERT INTO Cust
+VALUES(20,'Ahmad Raza', 'Sialkot','Pakistan'), (9,'Ahmad Raza', 'Sialkot','Pakistan'), (10,'Ahmad Raza', 'Sialkot','Pakistan'), (4,'Ahmad Raza', 'Sialkot','Pakistan'), 
+(5,'Ahmad Raza', 'Sialkot','Pakistan'), (6,'Ahmad Raza', 'Sialkot','Pakistan'), (7,'Ahmad Raza', 'Sialkot','Pakistan');
+
+INSERT INTO EMPLOYEES
+Values(65,'Atif', 'Musalim', 'Ahmad@gmail.com',12,'3We4'),(2,'Ahmad', 'Raza', 'Ahmad@gmail.com',12,'3We4'),(3,'Ahmad', 'Raza', 'Ahmad@gmail.com',12,'3We4'),
+(4,'Ahmad', 'Raza', 'Ahmad@gmail.com',12,'3We4'),(5,'Ahmad', 'Raza', 'Ahmad@gmail.com',12,'3We4');
+
+CREATE TABLE CustomerAudit
+(CustomerNumber int NOT NULL, 
+CustomerName varchar(30) NOT NULL,
+City varchar(30) NOT NULL, 
+Country varchar(30) NOT NULL,
+DateForInsertion Date NOT NULL,
+AuditType varchar(10) NOT NULL,
+);
+
+SELECT *FROM cust;
+SELECT *FROM CustomerAudit;
+
+CREATE TRIGGER trg_Customer_audit
+ON Cust
+AFTER INSERT
+AS BEGIN
+SET NOCOUNT ON
+INSERT INTO CustomerAudit SELECT
+Customer_Number,Customer_Name,GETDate(),'INS',City,Country
+FROM Cust
+END
+
+DROP TRIGGER trg_Customer_audit;
+
+CREATE TRIGGER trg_Customer_audit2
+ON Cust
+AFTER UPDATE
+AS BEGIN
+SET NOCOUNT ON
+INSERT INTO CustomerAudit SELECT
+Customer_Number,Customer_Name,GETDate(),'UPD',City,Country
+FROM Cust
+END
+
+CREATE TRIGGER trg_Customer_audit3
+ON Cust
+AFTER DELETE
+AS BEGIN
+SET NOCOUNT ON
+INSERT INTO CustomerAudit SELECT
+Customer_Number,Customer_Name,GETDate(),'DEL',City,Country
+FROM Cust
+END
+
+
+CREATE TABLE EmployeeAudit
+(FirstName varchar(30) NOT NULL, 
+LastName varchar(30) NOT NULL,
+Email varchar(30) NOT NULL, 
+DateForInsertion Date NOT NULL,
+AuditType varchar(10) NOT NULL,
+OfficeCode int NOT NULL,
+JobCode varchar(30) NOT NULL,
+);
+
+DROP TABLE EmployeeAudit;
+
+
+CREATE TRIGGER trg_Emlpoyee_audit1
+ON Employees
+AFTER INSERT
+AS BEGIN
+SET NOCOUNT ON
+DELETE FROM EmployeeAudit
+INSERT INTO EmployeeAudit SELECT
+FirstName,LastName,Email,GETDate(),'INS',OfficeCode,JobCode
+FROM Employees
+END
+
+DROP TRIGGER trg_Emlpoyee_audit1;
+SELECT *FROM EmployeeAudit;
+
+CREATE TRIGGER trg_Emlpoyee_audit2
+ON Employees
+AFTER DELETE
+AS BEGIN
+SET NOCOUNT ON
+INSERT INTO EmployeeAudit SELECT
+FirstName,LastName,Email,GETDate(),'DEL',OfficeCode,JobCode
+FROM Employees
+END
+
+DELETE FROM Employees
+WHERE employeeID = 60;
