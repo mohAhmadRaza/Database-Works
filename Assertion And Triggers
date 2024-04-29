@@ -1,0 +1,42 @@
+
+create table Product(maker varchar(30), model varchar(30) primary key, type varchar(30));
+create table pc(model varchar(30), speed float, ram int, hd int, price float);
+create table Laptop(model varchar(30), speed float, ram int, hd int,screen int, price float);
+create table printer(model varchar(30), color varchar(30),type varchar(30), price float);
+
+-- Inserting data into the Product table
+INSERT INTO Product (maker, model, type) VALUES
+('HP', '123ABC', 'Desktop'),
+('Dell', '456DEF', 'Laptop'),
+('Lenovo', '789GHI', 'Laptop');
+
+-- Inserting data into the pc table
+INSERT INTO pc (model, speed, ram, hd, price) VALUES
+('123ABC', 3.2, 8, 500, 700),
+('456DEF', 2.8, 16, 1000, 1200);
+
+-- Inserting data into the Laptop table
+INSERT INTO Laptop (model, speed, ram, hd, screen, price) VALUES
+('456DEF', 2.8, 16, 1000, 15, 1500),
+('789GHI', 3.0, 8, 512, 14, 1300);
+
+-- Inserting data into the printer table
+INSERT INTO printer (model, color, type, price) VALUES
+('ABC123', 'Black', 'Laser', 200),
+('DEF456', 'Color', 'Inkjet', 150);
+
+create assertion maker_constriant
+check (NOT EXISTS (SELECT * FROM Product,pc,Laptop
+ where product.model = pc.model AND product.model = Laptop.model))
+
+CREATE TRIGGER enforce_laptop_screen
+ON Laptop
+INSTEAD OF INSERT
+AS BEGIN 
+SET NOCOUNT ON; -- Set NOCOUNT to ON to prevent the count of the number of rows affected by a SQL statement from being returned as part of the result set
+
+IF (New.screen <= 0)
+BEGIN
+    RAISERROR ('Screen cannot be 0', 16, 1); -- Raise an error message if the condition is not met
+END IF
+END
